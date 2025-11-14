@@ -1,0 +1,326 @@
+CREATE TABLE `tb_greensand_check_ace` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`date` TIMESTAMP NULL DEFAULT NULL,
+	`shift` ENUM('D','S','N') NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`product_type_id` BIGINT(20) UNSIGNED NULL DEFAULT NULL,
+	`product_type_name` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`number` INT(11) NULL DEFAULT NULL,
+	`no_mix` INT(11) NULL DEFAULT NULL,
+	`sample_start` TIME NULL DEFAULT NULL,
+	`sample_finish` TIME NULL DEFAULT NULL,
+	`p` DECIMAL(8,2) NULL DEFAULT NULL,
+	`c` DECIMAL(8,2) NULL DEFAULT NULL,
+	`gt` DECIMAL(8,2) NULL DEFAULT NULL,
+	`cb_lab` DECIMAL(8,2) NULL DEFAULT NULL,
+	`moisture` DECIMAL(8,2) NULL DEFAULT NULL,
+	`machine_no` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`bakunetsu` DECIMAL(8,2) NULL DEFAULT NULL,
+	`ac` DECIMAL(8,2) NULL DEFAULT NULL,
+	`tc` DECIMAL(8,2) NULL DEFAULT NULL,
+	`vsd` DECIMAL(8,2) NULL DEFAULT NULL,
+	`ig` DECIMAL(8,2) NULL DEFAULT NULL,
+	`cb_weight` DECIMAL(8,2) NULL DEFAULT NULL,
+	`tp50_height` DECIMAL(8,2) NULL DEFAULT NULL,
+	`tp50_weight` DECIMAL(8,2) NULL DEFAULT NULL,
+	`ssi` DECIMAL(8,2) NULL DEFAULT NULL,
+	`most` DECIMAL(8,2) NULL DEFAULT NULL,
+	`dw29_vas` DECIMAL(8,2) NULL DEFAULT NULL,
+	`dw29_debu` DECIMAL(8,2) NULL DEFAULT NULL,
+	`dw31_vas` DECIMAL(8,2) NULL DEFAULT NULL,
+	`dw31_id` DECIMAL(8,2) NULL DEFAULT NULL,
+	`dw31_moldex` DECIMAL(8,2) NULL DEFAULT NULL,
+	`dw31_sc` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc13_cb` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc13_c` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc13_m` DECIMAL(8,2) NULL DEFAULT NULL,
+	`created_at` TIMESTAMP NULL DEFAULT NULL,
+	`updated_at` TIMESTAMP NULL DEFAULT NULL,
+	`created_log` VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`updated_log` VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `ace_date_shift_index` (`date`, `shift`) USING BTREE,
+	INDEX `ace_sample_time_index` (`sample_start`, `sample_finish`) USING BTREE,
+	INDEX `tb_greensand_ace_product_type_id_index` (`product_type_id`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=55
+;
+
+
+
+CREATE TABLE `tb_greensand_check_jsh` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`date` TIMESTAMP NULL DEFAULT NULL,
+	`shift` ENUM('D','S','N') NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`mm` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`mix_ke` INT(11) NULL DEFAULT NULL,
+	`mix_start` TIME NULL DEFAULT NULL,
+	`mix_finish` TIME NULL DEFAULT NULL,
+	`mm_p` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_c` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_gt` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_cb_mm` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_cb_lab` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_m` DECIMAL(8,2) NULL DEFAULT NULL,
+	`machine_no` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`mm_bakunetsu` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_ac` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_tc` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_vsd` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_ig` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_cb_weight` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_tp50_weight` DECIMAL(8,2) NULL DEFAULT NULL,
+	`mm_tp50_height` DECIMAL(8,2) NULL DEFAULT NULL COMMENT 'Tinggi TP 50 (mm)',
+	`mm_ssi` DECIMAL(8,2) NULL DEFAULT NULL,
+	`add_m3` DECIMAL(8,2) NULL DEFAULT NULL,
+	`add_vsd` DECIMAL(8,2) NULL DEFAULT NULL,
+	`add_sc` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc12_cb` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc12_m` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc11_ac` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc11_vsd` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc16_cb` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc16_m` DECIMAL(8,2) NULL DEFAULT NULL,
+	`rs_time` TIME NULL DEFAULT NULL,
+	`rs_type` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`bc9_moist` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc10_moist` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc11_moist` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc9_temp` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc10_temp` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc11_temp` DECIMAL(8,2) NULL DEFAULT NULL,
+	`add_water_mm` DECIMAL(8,2) NULL DEFAULT NULL,
+	`add_water_mm_2` DECIMAL(8,2) NULL DEFAULT NULL,
+	`temp_sand_mm_1` DECIMAL(8,2) NULL DEFAULT NULL,
+	`temp_sand_mm_2` DECIMAL(8,2) NULL DEFAULT NULL,
+	`total_air_mm1` DECIMAL(10,2) NULL DEFAULT NULL,
+	`total_air_mm2` DECIMAL(10,2) NULL DEFAULT NULL,
+	`total_mixing_mm1` DECIMAL(10,2) NULL DEFAULT NULL,
+	`total_mixing_mm2` DECIMAL(10,2) NULL DEFAULT NULL,
+	`rcs_pick_up` DECIMAL(8,2) NULL DEFAULT NULL,
+	`total_flask` DECIMAL(8,2) NULL DEFAULT NULL,
+	`rcs_avg` DECIMAL(8,2) NULL DEFAULT NULL,
+	`add_bentonite_ma` DECIMAL(8,2) NULL DEFAULT NULL,
+	`total_sand` DECIMAL(10,2) NULL DEFAULT NULL,
+	`add_water_bc10` DECIMAL(8,2) NULL DEFAULT NULL,
+	`lama_bc10_jalan` DECIMAL(8,2) NULL DEFAULT NULL,
+	`rating_pasir_es` DECIMAL(8,2) NULL DEFAULT NULL,
+	`total_air_bc9` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc9_ic_moist` DECIMAL(8,2) NULL DEFAULT NULL,
+	`bc9_ic_ac` DECIMAL(8,2) NULL DEFAULT NULL,
+	`ssi1_awal` DECIMAL(8,2) NULL DEFAULT NULL,
+	`ssi1_akhir` DECIMAL(8,2) NULL DEFAULT NULL,
+	`ssi2_awal` DECIMAL(8,2) NULL DEFAULT NULL,
+	`ssi2_akhir` DECIMAL(8,2) NULL DEFAULT NULL,
+	`created_at` TIMESTAMP NULL DEFAULT NULL,
+	`updated_at` TIMESTAMP NULL DEFAULT NULL,
+	`created_log` VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`updated_log` VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=73
+;
+
+
+CREATE TABLE `tb_greensand_gfn_ace` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`gfn_date` DATE NULL DEFAULT NULL,
+	`shift` ENUM('D','S','N') NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`mesh` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`gram` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`percentage` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`index` INT(11) NULL DEFAULT NULL,
+	`percentage_index` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+	`total_gram` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+	`total_percentage_index` DECIMAL(12,2) NOT NULL DEFAULT '0.00',
+	`created_at` TIMESTAMP NULL DEFAULT NULL,
+	`updated_at` TIMESTAMP NULL DEFAULT NULL,
+	`created_log` VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`updated_log` VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `tb_gfn_aceline_gfn_date_shift_index` (`gfn_date`, `shift`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=151
+;
+
+
+CREATE TABLE `tb_greensand_gfn_jsh` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`gfn_date` DATE NULL DEFAULT NULL,
+	`shift` ENUM('D','S','N') NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`mesh` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`gram` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`percentage` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`index` INT(11) NULL DEFAULT NULL,
+	`percentage_index` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+	`total_gram` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+	`total_percentage_index` DECIMAL(12,2) NOT NULL DEFAULT '0.00',
+	`created_at` TIMESTAMP NULL DEFAULT NULL,
+	`updated_at` TIMESTAMP NULL DEFAULT NULL,
+	`created_log` VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`updated_log` VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `tb_gfn_jsh_gfn_date_shift_index` (`gfn_date`, `shift`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=191
+;
+
+
+
+CREATE TABLE `tb_greensand_gfn_total_ace` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`gfn_date` DATE NULL DEFAULT NULL,
+	`shift` ENUM('D','S','N') NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`nilai_gfn` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`mesh_total140` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`mesh_total70` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`meshpan` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`judge_mesh_140` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`judge_mesh_70` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`judge_meshpan` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`total_gram` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+	`total_percentage_index` DECIMAL(12,2) NOT NULL DEFAULT '0.00',
+	`created_at` TIMESTAMP NULL DEFAULT NULL,
+	`updated_at` TIMESTAMP NULL DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `tb_total_gfn_aceline_gfn_date_shift_index` (`gfn_date`, `shift`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=15
+;
+
+
+
+CREATE TABLE `tb_greensand_gfn_total_jsh` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`gfn_date` DATE NULL DEFAULT NULL,
+	`shift` ENUM('D','S','N') NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`nilai_gfn` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+	`mesh_total140` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`mesh_total70` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`meshpan` DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	`judge_mesh_140` VARCHAR(8) NOT NULL DEFAULT 'NG' COLLATE 'utf8mb4_unicode_ci',
+	`judge_mesh_70` VARCHAR(8) NOT NULL DEFAULT 'NG' COLLATE 'utf8mb4_unicode_ci',
+	`judge_meshpan` VARCHAR(8) NOT NULL DEFAULT 'NG' COLLATE 'utf8mb4_unicode_ci',
+	`total_gram` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+	`total_percentage_index` DECIMAL(12,2) NOT NULL DEFAULT '0.00',
+	`created_at` TIMESTAMP NULL DEFAULT NULL,
+	`updated_at` TIMESTAMP NULL DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `tb_total_gfn_gfn_date_shift_index` (`gfn_date`, `shift`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=19
+;
+
+
+CREATE TABLE `tb_greensand_std_ace` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`p_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`p_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`c_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`c_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`gt_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`gt_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`cb_lab_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`cb_lab_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`moisture_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`moisture_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`bakunetsu_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`bakunetsu_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`ac_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`ac_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`tc_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`tc_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`vsd_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`vsd_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`ig_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`ig_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`cb_weight_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`cb_weight_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`tp50_height_min` DECIMAL(10,2) NULL DEFAULT NULL,
+	`tp50_height_max` DECIMAL(10,2) NULL DEFAULT NULL,
+	`tp50_weight_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`tp50_weight_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`ssi_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`ssi_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`bc13_cb_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`bc13_cb_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`bc13_c_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`bc13_c_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`bc13_m_min` DECIMAL(10,3) NULL DEFAULT NULL,
+	`bc13_m_max` DECIMAL(10,3) NULL DEFAULT NULL,
+	`created_at` TIMESTAMP NULL DEFAULT NULL,
+	`updated_at` TIMESTAMP NULL DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=2
+;
+
+
+
+CREATE TABLE `tb_greensand_std_jsh` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`mm_p_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_p_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_c_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_c_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_gt_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_gt_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_cb_mm_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_cb_mm_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_cb_lab_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_cb_lab_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_m_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_m_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_bakunetsu_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_bakunetsu_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_ac_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_ac_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_tc_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_tc_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_vsd_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_vsd_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_ig_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_ig_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_cb_weight_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_cb_weight_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_tp50_weight_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_tp50_weight_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_tp50_height_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_tp50_height_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_ssi_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`mm_ssi_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc12_cb_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc12_cb_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc12_m_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc12_m_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc11_ac_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc11_ac_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc11_vsd_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc11_vsd_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc16_cb_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc16_cb_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc16_m_min` DECIMAL(8,3) NULL DEFAULT NULL,
+	`bc16_m_max` DECIMAL(8,3) NULL DEFAULT NULL,
+	`created_at` TIMESTAMP NULL DEFAULT NULL,
+	`updated_at` TIMESTAMP NULL DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=2
+;
+
+
