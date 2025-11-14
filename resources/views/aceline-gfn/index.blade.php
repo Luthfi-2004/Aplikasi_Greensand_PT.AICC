@@ -249,16 +249,34 @@
     $__recap = $displayRecap ?? null;
   @endphp
 
+  <script id="gfn-rows" type="application/json">
+    @json($__rows ?? [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+  </script>
+  <script id="gfn-recap" type="application/json">
+    @json($__recap ?? null, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+  </script>
+
   <script>
-    window.gfnChartData = {
-      rows: {!! json_encode($__rows, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!},
-      recap: {!! json_encode($__recap, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
-    };
-    window.aceRoutes = {
-      gfnExists: "{{ route('acelinegfn.check-exists') }}",
-      gfnStore: "{{ route('acelinegfn.store') }}",
-      gfnUpdate: "{{ route('acelinegfn.update') }}",
-    };
+    try {
+      const rows = JSON.parse(document.getElementById('gfn-rows').textContent || '[]');
+      const recap = JSON.parse(document.getElementById('gfn-recap').textContent || 'null');
+
+      window.gfnChartData = { rows: rows, recap: recap };
+
+      window.aceRoutes = {
+        gfnExists: "{{ route('acelinegfn.check-exists') }}",
+        gfnStore: "{{ route('acelinegfn.store') }}",
+        gfnUpdate: "{{ route('acelinegfn.update') }}",
+      };
+    } catch (e) {
+      console.error('GFN JSON parse error:', e);
+      window.gfnChartData = { rows: [], recap: null };
+      window.aceRoutes = {
+        gfnExists: "{{ route('acelinegfn.check-exists') }}",
+        gfnStore: "{{ route('acelinegfn.store') }}",
+        gfnUpdate: "{{ route('acelinegfn.update') }}",
+      };
+    }
   </script>
   @if(session('open_modal'))
     <script>window.openModalGFN = true;</script>

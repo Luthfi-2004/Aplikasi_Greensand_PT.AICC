@@ -350,17 +350,37 @@
         $__recap = $displayRecap ?? null;
     @endphp
 
-    <script>
-        window.gfnChartData = {
-            rows: {!! json_encode($__rows, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!},
-            recap: {!! json_encode($__recap, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
-        };
+<script id="gfn-rows" type="application/json">
+    @json($__rows ?? [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+</script>
+<script id="gfn-recap" type="application/json">
+    @json($__recap ?? null, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+</script>
+
+<script>
+    // parse safely from DOM (avoids editor false-positives and script injection)
+    try {
+        const rows = JSON.parse(document.getElementById('gfn-rows').textContent || '[]');
+        const recap = JSON.parse(document.getElementById('gfn-recap').textContent || 'null');
+
+        window.gfnChartData = { rows: rows, recap: recap };
+
         window.jshRoutes = {
             gfnExists: "{{ route('jshgfn.check-exists') }}",
             gfnStore: "{{ route('jshgfn.store') }}",
             gfnUpdate: "{{ route('jshgfn.update') }}",
         };
-    </script>
+    } catch (e) {
+        // jika ada error parsing, tampilkan di console supaya nggak blank
+        console.error('GFN JSON parse error:', e);
+        window.gfnChartData = { rows: [], recap: null };
+        window.jshRoutes = {
+            gfnExists: "{{ route('jshgfn.check-exists') }}",
+            gfnStore: "{{ route('jshgfn.store') }}",
+            gfnUpdate: "{{ route('jshgfn.update') }}",
+        };
+    }
+</script>
     @if(session('open_modal'))
         <script>window.openModalGFN = true;</script>
     @endif

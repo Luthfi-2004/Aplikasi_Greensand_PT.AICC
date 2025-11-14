@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JshStandard;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator; 
+use Illuminate\Support\Facades\Validator;
 
 class JshStandardController extends Controller
 {
@@ -75,9 +75,6 @@ class JshStandardController extends Controller
     }
 
     // update standar
-    /**
-     * @param \Illuminate\Http\Request $request
-     */
     public function update(Request $request)
     {
         $std = JshStandard::query()->firstOrCreate([]);
@@ -106,7 +103,7 @@ class JshStandardController extends Controller
             $rules[$f . '_max'] = ['nullable', 'numeric'];
         }
 
-        $v = Validator::make($data, $rules); // <- pakai Validator facade import
+        $v = Validator::make($data, $rules);
         if ($v->fails()) {
             return back()->withErrors($v)->withInput();
         }

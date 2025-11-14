@@ -8,7 +8,6 @@
     .std-table td {
       vertical-align: middle !important;
     }
-
     .std-param {
       text-align: center;
     }

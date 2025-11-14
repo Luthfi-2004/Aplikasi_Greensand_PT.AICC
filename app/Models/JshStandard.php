@@ -10,7 +10,6 @@ class JshStandard extends Model
 
     protected $guarded = [];
 
-    // daftar field standar (kunci = nama kolom data di tabel JSH)
     public static function fields(): array
     {
         return [
@@ -24,7 +23,6 @@ class JshStandard extends Model
         ];
     }
 
-    // Ambil map "field => ['min'=>..., 'max'=>...]" dari row pertama
     public static function specMap(): array
     {
         $row = static::query()->first();
